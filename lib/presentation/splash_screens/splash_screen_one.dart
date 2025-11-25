@@ -5,10 +5,7 @@ import '../../core/app_export.dart';
 class SplashScreenOne extends StatelessWidget {
   final VoidCallback onNext;
 
-  const SplashScreenOne({
-    super.key,
-    required this.onNext,
-  });
+  const SplashScreenOne({super.key, required this.onNext});
 
   @override
   Widget build(BuildContext context) {
@@ -24,19 +21,16 @@ class SplashScreenOne extends StatelessWidget {
                 width: 40.w,
                 height: 40.w,
                 decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      AppTheme.lightTheme.colorScheme.primary,
-                      AppTheme.lightTheme.colorScheme.tertiary,
-                    ],
-                  ),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Center(
-                  child: Icon(
-                    Icons.auto_awesome,
-                    size: 20.w,
-                    color: AppTheme.lightTheme.colorScheme.onPrimary,
+                  child: Image.asset(
+                    Theme.of(context).brightness == Brightness.dark
+                        ? 'assets/aura_os_dark.png'
+                        : 'assets/aura_os_light.png',
+                    width: 32.w,
+                    height: 32.w,
+                    fit: BoxFit.contain,
                   ),
                 ),
               ),
@@ -58,7 +52,8 @@ class SplashScreenOne extends StatelessWidget {
               Text(
                 'Your Personal Productivity OS',
                 style: AppTheme.lightTheme.textTheme.bodyLarge?.copyWith(
-                  color: AppTheme.lightTheme.colorScheme.onBackground.withOpacity(0.7),
+                  color: AppTheme.lightTheme.colorScheme.onBackground
+                      .withOpacity(0.7),
                 ),
               ),
               SizedBox(height: 4.h),
@@ -67,7 +62,10 @@ class SplashScreenOne extends StatelessWidget {
                 onPressed: onNext,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppTheme.lightTheme.colorScheme.primary,
-                  padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 1.5.h),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 8.w,
+                    vertical: 1.5.h,
+                  ),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -80,10 +78,10 @@ class SplashScreenOne extends StatelessWidget {
                   ),
                 ),
               ),
-          ],
+            ],
+          ),
         ),
       ),
-    ),
-  );
+    );
   }
 }

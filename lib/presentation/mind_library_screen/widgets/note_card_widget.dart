@@ -80,11 +80,21 @@ class NoteCardWidget extends StatelessWidget {
               width: 1,
             ),
             boxShadow: [
+              // Top shadow
               BoxShadow(
-                color: AppTheme.shadowLight.withOpacity(0.25),
-                blurRadius: 12,
-                spreadRadius: 2,
-                offset: const Offset(0, 6),
+                color: theme.brightness == Brightness.light
+                    ? AppTheme.shadowLight.withOpacity(0.18)
+                    : AppTheme.shadowDark.withOpacity(0.18),
+                blurRadius: 8,
+                offset: const Offset(0, -2),
+              ),
+              // Bottom shadow
+              BoxShadow(
+                color: theme.brightness == Brightness.light
+                    ? AppTheme.shadowLight.withOpacity(0.22)
+                    : AppTheme.shadowDark.withOpacity(0.22),
+                blurRadius: 16,
+                offset: const Offset(0, 8),
               ),
             ],
           ),

@@ -52,73 +52,69 @@ class _QuickAccessCardsWidgetState extends State<QuickAccessCardsWidget> {
             ),
           ),
         ),
-        SizedBox(height: 0.6.h),
+        SizedBox(height: 2.5.h),
         SizedBox(
-          height: 13.5.h,
-          child: Builder(
-            builder: (context) {
-              final List<Widget> slides = [];
+          height: 19.h,
+          child: Center(
+            child: Builder(
+              builder: (context) {
+                final List<Widget> slides = [];
 
-              slides.add(
-                _buildQuickAccessCard(
-                  context: context,
-                  title: 'Pending Tasks',
-                  value: '8',
-                  subtitle: '3 due today',
-                  icon: 'task_alt',
-                  color: colorScheme.primary,
-                  onTap: () => Navigator.pushNamed(context, '/tasks-screen'),
-                ),
-              );
+                slides.add(
+                  _buildQuickAccessCard(
+                    context: context,
+                    title: 'Pending Tasks',
+                    value: '8',
+                    subtitle: '3 due today',
+                    icon: 'task_alt',
+                    color: colorScheme.primary,
+                    onTap: () => Navigator.pushNamed(context, '/tasks-screen'),
+                  ),
+                );
 
-              slides.add(
-                _buildQuickAccessCard(
-                  context: context,
-                  title: 'Energy Check-in',
-                  // swapped per request: show action as primary value and status as subtitle
-                  value: 'Tap to update',
-                  subtitle: 'Not logged',
-                  icon: 'bolt',
-                  color: colorScheme.tertiary,
-                  onTap: () =>
-                      Navigator.pushNamed(context, '/energy-focus-dashboard'),
-                ),
-              );
+                slides.add(
+                  _buildQuickAccessCard(
+                    context: context,
+                    title: 'Energy Check-in',
+                    value: 'Tap to update',
+                    subtitle: 'Not logged',
+                    icon: 'bolt',
+                    color: colorScheme.tertiary,
+                    onTap: () =>
+                        Navigator.pushNamed(context, '/energy-focus-dashboard'),
+                  ),
+                );
 
-              slides.add(
-                _buildQuickAccessCard(
-                  context: context,
-                  title: 'Active Jobs',
-                  value: '2',
-                  subtitle: '1 accountability',
-                  icon: 'groups',
-                  color: colorScheme.secondary,
-                  onTap: () =>
-                      Navigator.pushNamed(context, '/peer-pods-screen'),
-                ),
-              );
+                slides.add(
+                  _buildQuickAccessCard(
+                    context: context,
+                    title: 'Active Jobs',
+                    value: '2',
+                    subtitle: '1 accountability',
+                    icon: 'groups',
+                    color: colorScheme.secondary,
+                    onTap: () =>
+                        Navigator.pushNamed(context, '/peer-pods-screen'),
+                  ),
+                );
 
-              // recent activity card removed
-
-              return PageView.builder(
-                controller: _pageController,
-                itemCount: slides.length,
-                padEnds: false,
-                physics: const BouncingScrollPhysics(),
-                itemBuilder: (context, index) {
-                  final double diff = (_currentPage - index).abs();
-                  final double scale = (1 - (diff * 0.15)).clamp(0.85, 1.0);
-                  return Padding(
-                    padding: EdgeInsets.only(left: 1.5.w, right: 1.5.w),
-                    child: Transform.scale(
-                      scale: scale,
-                      alignment: Alignment.center,
+                return PageView.builder(
+                  controller: _pageController,
+                  itemCount: slides.length,
+                  padEnds: false,
+                  physics: const BouncingScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: EdgeInsets.symmetric(
+                        vertical: 2.5.h,
+                        horizontal: 1.5.w,
+                      ),
                       child: SizedBox(width: 38.w, child: slides[index]),
-                    ),
-                  );
-                },
-              );
-            },
+                    );
+                  },
+                );
+              },
+            ),
           ),
         ),
       ],
@@ -156,10 +152,17 @@ class _QuickAccessCardsWidgetState extends State<QuickAccessCardsWidget> {
           borderRadius: BorderRadius.circular(16),
           border: Border.all(color: colorScheme.outline.withValues(alpha: 0.1)),
           boxShadow: [
+            // Top shadow (softer)
             BoxShadow(
-              color: theme.shadowColor.withOpacity(0.14),
+              color: theme.shadowColor.withOpacity(0.11),
               blurRadius: 6,
-              offset: const Offset(0, 1.2),
+              offset: const Offset(0, -3),
+            ),
+            // Bottom shadow (softer)
+            BoxShadow(
+              color: theme.shadowColor.withOpacity(0.11),
+              blurRadius: 8,
+              offset: const Offset(0, 4),
             ),
           ],
         ),
@@ -208,16 +211,45 @@ class _QuickAccessCardsWidgetState extends State<QuickAccessCardsWidget> {
                             maxLines: 1,
                           ),
                           SizedBox(height: 0.175.h),
-                          Text(
-                            subtitle,
-                            style: theme.textTheme.bodySmall?.copyWith(
-                              color: subtitleNegative
-                                  ? colorScheme.error
-                                  : colorScheme.onSurfaceVariant,
-                            ),
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
-                          ),
+                          subtitleNegative
+                              ? Container(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: 2.w,
+                                    vertical: 0.5.h,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: colorScheme.error.withOpacity(0.13),
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: Text(
+                                    subtitle,
+                                    style: theme.textTheme.bodySmall?.copyWith(
+                                      color: colorScheme.error,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: 1,
+                                  ),
+                                )
+                              : Container(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: 2.w,
+                                    vertical: 0.5.h,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: colorScheme.onSurfaceVariant
+                                        .withOpacity(0.13),
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: Text(
+                                    subtitle,
+                                    style: theme.textTheme.bodySmall?.copyWith(
+                                      color: colorScheme.onSurfaceVariant,
+                                    ),
+                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: 1,
+                                  ),
+                                ),
                         ],
                       ),
                     ),
@@ -227,7 +259,7 @@ class _QuickAccessCardsWidgetState extends State<QuickAccessCardsWidget> {
                   Transform.translate(
                     offset: Offset(0, -0.8.h),
                     child: Container(
-                      margin: EdgeInsets.only(left: 6),
+                      margin: EdgeInsets.only(left: 6, right: 2.5.w),
                       padding: EdgeInsets.all(0.9.w),
                       decoration: BoxDecoration(
                         color: color.withValues(alpha: 0.1),
@@ -236,7 +268,6 @@ class _QuickAccessCardsWidgetState extends State<QuickAccessCardsWidget> {
                       child: CustomIconWidget(
                         iconName: icon,
                         color: color,
-                        // increased by 7 units from previous 22 -> 29
                         size: 29,
                       ),
                     ),

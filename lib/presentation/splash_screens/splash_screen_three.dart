@@ -5,10 +5,7 @@ import '../../core/app_export.dart';
 class SplashScreenThree extends StatelessWidget {
   final VoidCallback onNext;
 
-  const SplashScreenThree({
-    super.key,
-    required this.onNext,
-  });
+  const SplashScreenThree({super.key, required this.onNext});
 
   @override
   Widget build(BuildContext context) {
@@ -18,42 +15,22 @@ class SplashScreenThree extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            // Task & Goals illustration
+            // App logo illustration
             Container(
-              width: 70.w,
+              width: 40.w,
               height: 40.w,
-              margin: EdgeInsets.symmetric(horizontal: 10.w),
               decoration: BoxDecoration(
-                color: AppTheme.lightTheme.colorScheme.secondaryContainer,
                 borderRadius: BorderRadius.circular(20),
               ),
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  Icon(
-                    Icons.check_circle_outline,
-                    size: 20.w,
-                    color: AppTheme.lightTheme.colorScheme.secondary,
-                  ),
-                  Positioned(
-                    right: 5.w,
-                    top: 5.w,
-                    child: Icon(
-                      Icons.timeline,
-                      size: 15.w,
-                      color: AppTheme.lightTheme.colorScheme.primary,
-                    ),
-                  ),
-                  Positioned(
-                    left: 5.w,
-                    bottom: 5.w,
-                    child: Icon(
-                      Icons.lightbulb_outline,
-                      size: 15.w,
-                      color: AppTheme.lightTheme.colorScheme.tertiary,
-                    ),
-                  ),
-                ],
+              child: Center(
+                child: Image.asset(
+                  Theme.of(context).brightness == Brightness.dark
+                      ? 'assets/aura_os_dark.png'
+                      : 'assets/aura_os_light.png',
+                  width: 32.w,
+                  height: 32.w,
+                  fit: BoxFit.contain,
+                ),
               ),
             ),
             SizedBox(height: 4.h),
@@ -71,7 +48,8 @@ class SplashScreenThree extends StatelessWidget {
                 'Achieve more with focused work sessions and smart task management',
                 textAlign: TextAlign.center,
                 style: AppTheme.lightTheme.textTheme.bodyLarge?.copyWith(
-                  color: AppTheme.lightTheme.colorScheme.onBackground.withOpacity(0.7),
+                  color: AppTheme.lightTheme.colorScheme.onBackground
+                      .withOpacity(0.7),
                 ),
               ),
             ),

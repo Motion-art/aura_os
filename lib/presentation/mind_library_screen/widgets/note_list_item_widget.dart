@@ -28,7 +28,6 @@ class NoteListItemWidget extends StatelessWidget {
     final content = (note['content'] as String?) ?? '';
     final tags = (note['tags'] as List?)?.cast<String>() ?? [];
     final isFavorite = (note['isFavorite'] as bool?) ?? false;
-    final createdAt = note['createdAt'] as DateTime?;
     final isArchived = (note['isArchived'] as bool?) ?? false;
 
     return Dismissible(
@@ -66,52 +65,53 @@ class NoteListItemWidget extends StatelessWidget {
         onLongPress: onLongPress,
         borderRadius: BorderRadius.circular(8),
         child: Container(
-          padding: EdgeInsets.symmetric(
-            horizontal: 4.w,
-            vertical: 3.h,
-          ),
+          margin: EdgeInsets.only(bottom: 1.2.h),
+          padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 3.h),
           decoration: BoxDecoration(
+            color: colorScheme.surface,
+            borderRadius: BorderRadius.circular(10),
             border: Border(
               bottom: BorderSide(
                 color: colorScheme.outline.withValues(alpha: 0.1),
                 width: 1,
               ),
             ),
+            boxShadow: [
+              // Top shadow
+              BoxShadow(
+                color: theme.brightness == Brightness.light
+                    ? AppTheme.shadowLight.withOpacity(0.08)
+                    : AppTheme.shadowDark.withOpacity(0.08),
+                blurRadius: 3,
+                offset: const Offset(0, -1),
+              ),
+              // Bottom shadow
+              BoxShadow(
+                color: theme.brightness == Brightness.light
+                    ? AppTheme.shadowLight.withOpacity(0.10)
+                    : AppTheme.shadowDark.withOpacity(0.10),
+                blurRadius: 6,
+                offset: const Offset(0, 2),
+              ),
+            ],
           ),
           child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Content section
+              // Note content
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Title and metadata row
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            title,
-                            style: theme.textTheme.titleSmall?.copyWith(
-                              fontWeight: FontWeight.w600,
-                              color: colorScheme.onSurface,
-                            ),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                        if (createdAt != null) ...[
-                          SizedBox(width: 2.w),
-                          Text(
-                            _formatDate(createdAt),
-                            style: theme.textTheme.labelSmall?.copyWith(
-                              color: colorScheme.onSurfaceVariant
-                                  .withValues(alpha: 0.7),
-                            ),
-                          ),
-                        ],
-                      ],
+                    Text(
+                      title,
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        color: colorScheme.onSurface,
+                        fontWeight: FontWeight.w600,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                     ),
-
                     if (content.isNotEmpty) ...[
                       SizedBox(height: 1.h),
                       Text(
@@ -124,7 +124,6 @@ class NoteListItemWidget extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                       ),
                     ],
-
                     if (tags.isNotEmpty) ...[
                       SizedBox(height: 1.h),
                       Text(
@@ -140,7 +139,6 @@ class NoteListItemWidget extends StatelessWidget {
                   ],
                 ),
               ),
-
               // Status icons
               SizedBox(width: 3.w),
               Column(
@@ -162,8 +160,9 @@ class NoteListItemWidget extends StatelessWidget {
                   if (!isFavorite && !isArchived)
                     CustomIconWidget(
                       iconName: 'chevron_right',
-                      color:
-                          colorScheme.onSurfaceVariant.withValues(alpha: 0.5),
+                      color: colorScheme.onSurfaceVariant.withValues(
+                        alpha: 0.5,
+                      ),
                       size: 5.w,
                     ),
                 ],
@@ -175,18 +174,5 @@ class NoteListItemWidget extends StatelessWidget {
     );
   }
 
-  String _formatDate(DateTime date) {
-    final now = DateTime.now();
-    final difference = now.difference(date);
-
-    if (difference.inDays == 0) {
-      return 'Today';
-    } else if (difference.inDays == 1) {
-      return 'Yesterday';
-    } else if (difference.inDays < 7) {
-      return '${difference.inDays}d';
-    } else {
-      return '${date.day}/${date.month}';
-    }
-  }
+  // Removed unused _formatDate method
 }

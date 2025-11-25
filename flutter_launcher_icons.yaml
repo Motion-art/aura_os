@@ -1,0 +1,7 @@
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/aura_os_dark.png"
+  web:
+    generate: true
+    image_path: "assets/aura_os_dark.png"

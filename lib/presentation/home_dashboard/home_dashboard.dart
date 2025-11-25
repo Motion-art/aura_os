@@ -180,21 +180,26 @@ class _HomeDashboardState extends State<HomeDashboard> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          // App title
+          // App title with adaptive logo
           Row(
             children: [
               Container(
-                padding: EdgeInsets.all(2.w),
+                width: 40,
+                height: 40,
+                padding: EdgeInsets.all(0),
                 decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [colorScheme.primary, colorScheme.tertiary],
-                  ),
-                  borderRadius: BorderRadius.circular(8),
+                  borderRadius: BorderRadius.circular(100),
                 ),
-                child: CustomIconWidget(
-                  iconName: 'auto_awesome',
-                  color: colorScheme.onPrimary,
-                  size: 20,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(100),
+                  child: Image.asset(
+                    theme.brightness == Brightness.dark
+                        ? 'assets/aura_os_dark.png'
+                        : 'assets/aura_os_light.png',
+                    width: 64,
+                    height: 64,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
               SizedBox(width: 3.w),
