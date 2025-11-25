@@ -15,11 +15,9 @@
 
   function setDarkImages(){
     logo.src = 'assets/aura_os_dark.png';
-    document.querySelectorAll('.screen-img').forEach(img=> img.src = 'assets/aura_os_dark.png');
   }
   function setLightImages(){
     logo.src = 'assets/aura_os_light.png';
-    document.querySelectorAll('.screen-img').forEach(img=> img.src = 'assets/aura_os_light.png');
   }
 
   // device mockup carousel (one at a time)
