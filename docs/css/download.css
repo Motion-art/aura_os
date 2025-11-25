@@ -115,9 +115,9 @@ body.dark{
 @media (max-width:640px){
   .device-carousel{height:300px}
   .device-frame{width:160px}
-  .device-frame.iphone{border-radius:32px}
-  .device-notch{border-radius:0 0 16px 16px}
-  .device-screen{border-radius:28px}
+  .device-frame.iphone{border-radius:16px !important;padding:8px}
+  .device-notch{border-radius:0 0 10px 10px !important;height:20px}
+  .device-screen{border-radius:12px !important}
   .carousel-btn{width:32px;height:32px;font-size:18px}
   .carousel-btn.prev{left:0}
   .carousel-btn.next{right:0}
