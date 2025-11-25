@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Aura OS — Download</title>
+
+  <!-- Inter font (matches app) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/download.css">
+</head>
+<body class="light">
+  <div class="page">
+    <header class="site-header">
+      <div class="container header-inner">
+        <div class="brand">
+          <img id="logo-img" src="assets/aura_os_light.png" alt="Aura OS" />
+          <div class="brand-text">
+            <h1>Aura OS</h1>
+            <p class="tag">Your Personal Productivity OS</p>
+          </div>
+        </div>
+        <div class="actions">
+          <button id="theme-toggle" class="icon-btn" aria-label="Toggle theme">🌗</button>
+          <a class="btn ghost" href="#features">Learn</a>
+          <a class="btn primary" href="#downloads">Download</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-inner">
+          <!-- Device mockup carousel at the top -->
+          <div class="hero-media">
+            <div class="carousel-container">
+              <div class="device-carousel" id="carousel">
+                <!-- iPhone mockup 1 -->
+                <div class="device-frame iphone">
+                  <div class="device-notch"></div>
+                  <div class="device-screen">
+                    <img class="screen-img" src="assets/aura_os_light.png" alt="App Screenshot 1" />
+                  </div>
+                  <div class="device-home"></div>
+                </div>
+                
+                <!-- iPhone mockup 2 -->
+                <div class="device-frame iphone">
+                  <div class="device-notch"></div>
+                  <div class="device-screen">
+                    <img class="screen-img" src="assets/aura_os_light.png" alt="App Screenshot 2" />
+                  </div>
+                  <div class="device-home"></div>
+                </div>
+                
+                <!-- iPhone mockup 3 -->
+                <div class="device-frame iphone">
+                  <div class="device-notch"></div>
+                  <div class="device-screen">
+                    <img class="screen-img" src="assets/aura_os_light.png" alt="App Screenshot 3" />
+                  </div>
+                  <div class="device-home"></div>
+                </div>
+              </div>
+              
+              <!-- Carousel controls -->
+              <button class="carousel-btn prev" id="prev-btn" aria-label="Previous">‹</button>
+              <button class="carousel-btn next" id="next-btn" aria-label="Next">›</button>
+              
+              <!-- Dots indicator -->
+              <div class="carousel-dots" id="dots-container"></div>
+            </div>
+          </div>
+
+          <!-- Copy below the carousel -->
+          <div class="hero-copy">
+            <h2>Focus. Ship. Repeat.</h2>
+            <p class="lead">Aura OS combines task management, energy tracking and mindful notes to help you get into deep work and stay there.</p>
+
+            <div class="download-row" id="downloads">
+              <a class="download-btn android" href="https://github.com/Motion-art/aura_os/releases/download/v.1.2.3/AuraOs.apk" role="button">
+                <span class="icon">🤖</span>
+                <span class="meta">Android</span>
+                <strong>Download APK</strong>
+              </a>
+            </div>
+
+            <p class="small-muted">Safe & private. Works offline. Small download size.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="features" class="features">
+        <div class="container">
+          <h3>Designed for deep work</h3>
+          <p class="lead">Tools for focus, tracking and reflection in a single, distraction-free space.</p>
+
+          <div class="feature-grid">
+            <article class="feature">
+              <div class="feature-icon">⚡</div>
+              <h4>Focus Sessions</h4>
+              <p>Timeboxed sessions with gentle guidance and progress tracking.</p>
+            </article>
+
+            <article class="feature">
+              <div class="feature-icon">🧭</div>
+              <h4>Task Hub</h4>
+              <p>Centralized tasks with priorities, due dates and quick actions.</p>
+            </article>
+
+            <article class="feature">
+              <div class="feature-icon">📝</div>
+              <h4>Mind Library</h4>
+              <p>Store short notes, tag them and surface ideas when you need them.</p>
+            </article>
+
+            <article class="feature">
+              <div class="feature-icon">🔋</div>
+              <h4>Energy Insights</h4>
+              <p>Track your energy and focus patterns to plan your best work blocks.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta-band">
+        <div class="container">
+          <div class="cta-inner">
+            <div>
+              <h3>Ready to be more productive?</h3>
+              <p class="small-muted">Install now and join early adopters using Aura OS to focus better.</p>
+            </div>
+            <div>
+              <a class="btn primary large" href="#downloads">Get Aura OS</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="specs container">
+        <h4>System & download</h4>
+        <div class="spec-grid">
+          <div>
+            <h5>Android</h5>
+            <p>Android 8+ • APK size ~ 20MB</p>
+            <a class="link" href="https://github.com/Motion-art/aura_os/releases/download/v.1.2.3/AuraOs.apk">Direct APK</a>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div class="left">© Aura OS • Built for focus</div>
+        <div class="right">
+          <a class="link" href="#">Privacy</a>
+          <a class="link" href="#">Terms</a>
+          <a class="link" href="#">Contact</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="js/download.js"></script>
+</body>
+</html>
